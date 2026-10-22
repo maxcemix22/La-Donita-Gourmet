@@ -1,109 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>La Doñita Gourmet | Repostería y catering</title>
-  <meta name="description" content="Empanadas, catering y boxes de bocaditos para tus eventos. Arma tu pedido y confírmalo por WhatsApp.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%A5%9F%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Doñita Gourmet | Empanadas, bocaditos y catering en Lima</title>
+<meta name="description" content="Empanadas artesanales, bocaditos y catering gourmet en Lima. Arma tu pedido y confírmalo por WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%A5%9F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#inicio">La Doñita Gourmet</a>
-    <nav aria-label="Menú principal">
-      <a href="#inicio">Inicio</a>
-      <a href="#catalogo">Catálogo</a>
-      <a href="#carrito">Carrito (<span id="cart-count">0</span>)</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="#inicio">La Doñita Gourmet<small>📍 Lima, Perú</small></a>
+  <nav aria-label="Menú principal">
+    <a href="#inicio">Inicio</a><a href="#catalogo">Catálogo</a><a href="#catering">Catering &amp; Buffets</a><a href="#como">Cómo pedir</a><a href="#contacto">Contacto</a>
+  </nav>
+  <div class="acciones"><a class="btn wa sm" id="wa-top" href="#" target="_blank" rel="noopener">💬 937 227 925</a><a class="bolsa" href="#carrito" aria-label="Ir al carrito">🛍 <span id="cart-count">0</span></a></div>
+</div></header>
 
-  <main>
-    <section id="inicio" class="hero">
-      <h1>Sabor casero para tus eventos</h1>
-      <p>Empanadas, catering y boxes de bocaditos. Mira el catálogo, arma tu pedido y confírmalo por WhatsApp.</p>
-      <a class="btn" href="#catalogo">Ver catálogo</a>
-    </section>
+<main>
+<section id="inicio" class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow">— Lima, Perú</span>
+    <h1>La Doñita <em>Gourmet</em></h1>
+    <p>Empanadas artesanales horneadas al momento, bocaditos exquisitos y servicios de catering integral que convierten cada celebración familiar o corporativa en una experiencia memorable.</p>
+    <div class="cta"><a class="btn" href="#catalogo">Ver catálogo</a><a class="btn wa" href="#carrito">💬 Pedir ahora</a></div>
+    <div class="mini"><span>✔ Horneado diario 100% fresco</span><span>🛡 Masa artesanal de mantequilla</span></div>
+  </div>
+  <div class="feats">
+    <div><h3>Artesanales</h3><p>Empanadas de autor con masa tradicional horneada a punto de oro.</p></div>
+    <div><h3>+500 realizados</h3><p>Eventos familiares, aniversarios y reuniones corporativas exitosas.</p></div>
+    <div><h3>Gourmet</h3><p>Insumos de primera línea, quesos selectos y cortes premium.</p></div>
+    <div><h3>Lima completa</h3><p>Envíos programados a Miraflores, San Isidro, Surco, San Borja y más.</p></div>
+  </div>
+</div></section>
 
-    <section id="catalogo" class="section">
-      <h2>Catálogo</h2>
-      <div id="filtros" class="filtros" role="group" aria-label="Filtrar por categoría"></div>
-      <div id="productos" class="grid" aria-live="polite"></div>
-    </section>
+<section id="catalogo" class="sec"><div class="wrap">
+  <div class="sec-head"><span class="pill">Menú completo</span><h2 style="margin-top:.6rem">Nuestro Catálogo</h2><p>Escoge tus favoritos, agrégalos al carrito y completa tu pedido por WhatsApp. ¡Así de fácil!</p></div>
+  <div id="filtros" class="filtros" role="group" aria-label="Filtrar por categoría"></div>
+  <div class="cat-layout">
+    <div><p class="nota" style="margin:0 0 .8rem">🟢 Horneado hoy en Lima · Precios en Soles (S/)</p><div id="productos" class="grid" aria-live="polite"></div></div>
+    <aside class="panel" aria-label="Mi pedido">
+      <h3>Mi Pedido</h3>
+      <p id="aviso-carrito" class="error" role="status" hidden></p>
+      <p id="mini-vacio" class="vacio">Aún no agregaste productos.</p>
+      <ul id="mini-items" class="items"></ul>
+      <div id="mini-tot" class="totales" hidden><div class="t"><span>Total estimado</span><span id="mini-total">S/ 0.00</span></div></div>
+      <a class="btn wa block" href="#carrito">Ir a confirmar pedido</a>
+      <button id="vaciar" class="btn-link" type="button">Vaciar pedido</button>
+    </aside>
+  </div>
+</div></section>
 
-    <section id="carrito" class="section">
-      <h2>Tu pedido</h2>
-      <ol class="pasos" aria-label="Pasos del pedido">
-        <li>Selección de productos</li>
-        <li class="activo">Carrito y datos de entrega</li>
-        <li>Confirmación por WhatsApp</li>
-      </ol>
+<section id="catering" class="sec alt"><div class="wrap">
+  <div class="sec-head"><span class="pill">Estimación dinámica</span><h2 style="margin-top:.6rem">Catering &amp; Buffets: calcula tu propuesta</h2><p>Personaliza el número de invitados y el estilo de menú para obtener un estimado referencial en segundos.</p></div>
+  <div class="calc">
+    <div>
+      <h4>1. Tipo de celebración</h4><div id="evt-tipos" class="filtros"></div>
+      <h4>2. Cantidad de invitados: <span id="inv-n" class="serif">40 personas</span></h4>
+      <input id="inv" type="range" min="15" max="250" value="40" aria-label="Cantidad de invitados">
+      <h4>3. Estilo de menú</h4><div id="evt-estilos" class="filtros"></div>
+    </div>
+    <div class="resumen">
+      <span class="eyebrow" style="color:var(--brown)">Resumen del pedido</span>
+      <p id="res" style="font-size:.9rem"></p>
+      <div class="estimado"><small>PRESUPUESTO ESTIMADO</small><strong id="est"></strong><small>*Precio referencial según requerimientos estándar.</small></div>
+      <a id="cot" class="btn wa block" href="#" target="_blank" rel="noopener">💬 Enviar cotización por WhatsApp</a>
+    </div>
+  </div>
+  <h2 style="margin:2.5rem 0 1rem">Paquetes preestablecidos</h2>
+  <div id="paquetes" class="pasos3"></div>
+</div></section>
 
-      <div id="carrito-vacio" class="aviso">Aún no agregaste productos. Elige algo del catálogo.</div>
+<section id="como" class="sec"><div class="wrap">
+  <div class="sec-head"><span class="pill">Simple &amp; directo</span><h2 style="margin-top:.6rem">¿Cómo funciona tu pedido?</h2><p>Pide en minutos sin registros complicados. Coordinación personalizada por WhatsApp.</p></div>
+  <div class="pasos3">
+    <div class="paso"><b>🛒</b><h3>Elige tus productos</h3><p>Navega el catálogo, selecciona tus favoritos y agrégalos al carrito.</p></div>
+    <div class="paso"><b>💬</b><h3>Ir a WhatsApp</h3><p>Al finalizar te redirigimos a nuestro chat oficial con tu pedido desglosado.</p></div>
+    <div class="paso"><b>🚀</b><h3>¡Listo!</h3><p>Coordinamos el horario de entrega o recojo y disfrutas del sabor de La Doñita.</p></div>
+  </div>
+</div></section>
 
-      <div id="carrito-contenido" hidden>
-        <p id="aviso-carrito" class="error" role="status" hidden></p>
-        <ul id="items" class="items"></ul>
-        <p class="total">Total: <strong id="total">S/ 0.00</strong></p>
-        <button id="vaciar" class="btn-link" type="button">Vaciar pedido</button>
+<section id="carrito" class="sec alt"><div class="wrap">
+  <ol class="pasos" aria-label="Pasos del pedido"><li class="ok">Selección de productos</li><li class="on">Carrito y datos de entrega</li><li>Confirmación por WhatsApp</li></ol>
+  <h2 style="font-size:2rem;margin-bottom:1rem">Tu carrito de pedido</h2>
+  <div id="carrito-vacio" class="vacio">Aún no agregaste productos. <a href="#catalogo">Elige algo del catálogo</a>.</div>
+  <div id="carrito-contenido" class="co" hidden>
+    <div class="box"><h3 style="font-size:1.1rem">Bocaditos &amp; empanadas seleccionadas</h3><ul id="items" class="items" style="margin-top:.8rem"></ul></div>
+    <form id="pedido-form" class="box" novalidate>
+      <fieldset><legend>Tus datos</legend>
+        <label>Nombre completo <input name="nombre" required autocomplete="name"></label>
+        <label>Teléfono <input name="telefono" type="tel" required inputmode="tel" autocomplete="tel"></label>
+      </fieldset>
+      <fieldset><legend>Tipo de pedido</legend><div class="opciones">
+        <label class="in"><input type="radio" name="tipo" value="normal" checked> Pedido regular</label>
+        <label class="in"><input type="radio" name="tipo" value="catering"> Corporativo / catering</label></div>
+      </fieldset>
+      <fieldset id="evento" hidden><legend>Datos del evento</legend>
+        <label>Fecha del evento <input name="fechaEvento" type="date"></label>
+        <label>Hora (opcional) <input name="horaEvento" type="time"></label>
+        <label>Tipo de servicio <input name="tipoServicio" placeholder="Ej. cumpleaños, reunión de oficina"></label>
+        <label>Cantidad de personas <input name="personas" type="number" min="1" inputmode="numeric"></label>
+        <label>Dirección del evento <input name="direccionEvento"></label>
+      </fieldset>
+      <fieldset><legend>Despacho y entrega</legend><div class="opciones">
+        <label class="in"><input type="radio" name="entrega" value="recojo en local" checked> Recojo en local</label>
+        <label class="in"><input type="radio" name="entrega" value="delivery"> Delivery Lima</label></div>
+        <div id="dir-wrap" hidden style="display:grid;gap:.6rem"><label>Distrito <input name="distrito" placeholder="Ej. Santiago de Surco"></label><label>Dirección exacta y referencia <input name="direccion"></label></div>
+        <label>Fecha de entrega deseada (opcional) <input name="fechaEntrega" type="date"></label>
+        <label>Método de pago preferido (opcional)<select name="pago"><option value="">Seleccionar</option><option>Yape / Plin</option><option>BCP / BBVA (transferencia)</option><option>Contra entrega (efectivo / POS)</option></select></label>
+        <label>Indicaciones para la cocina (opcional) <textarea name="observaciones" rows="2" placeholder="Ej. masa extra dorada, salsas separadas"></textarea></label>
+      </fieldset>
+      <div class="totales"><div><span>Subtotal</span><span id="sub">S/ 0.00</span></div><div><span>Envío</span><span id="envio">Gratis</span></div><div class="t"><span>Total a pagar</span><span id="total">S/ 0.00</span></div></div>
+      <p id="error" class="error" role="alert" hidden></p>
+      <p id="exito" class="exito" role="status" hidden>Se abrió WhatsApp con tu pedido. Envía el mensaje para que lo confirmemos.</p>
+      <button class="btn wa block" type="submit">💬 Confirmar y enviar pedido por WhatsApp</button>
+    </form>
+  </div>
+</div></section>
 
-        <form id="pedido-form" novalidate>
-          <fieldset>
-            <legend>Tus datos</legend>
-            <label>Nombre completo <input name="nombre" required autocomplete="name"></label>
-            <label>Teléfono <input name="telefono" type="tel" required inputmode="tel" autocomplete="tel"></label>
-          </fieldset>
+<section id="eventos" class="sec"><div class="wrap"><div class="banner">
+  <div><span class="eyebrow">Servicio integral para empresas &amp; familias</span><h2 style="margin-top:.4rem">¿Planeando un evento grande o coffee break en Lima?</h2><p>Armamos paquetes a medida desde 100 hasta más de 1,500 bocaditos con menaje térmico, presentación gourmet y despacho puntual.</p></div>
+  <a class="btn wa" href="#catering">Cotizar catering</a>
+</div></div></section>
 
-          <fieldset>
-            <legend>Tipo de pedido</legend>
-            <label class="inline"><input type="radio" name="tipo" value="normal" checked> Pedido regular</label>
-            <label class="inline"><input type="radio" name="tipo" value="catering"> Pedido corporativo / catering</label>
-          </fieldset>
+<section id="faq" class="sec"><div class="wrap">
+  <div class="sec-head"><h2>Preguntas frecuentes</h2></div>
+  <details><summary>¿Cómo realizo un pedido?</summary><p>Ingresa al catálogo, selecciona el producto, completa tus datos de contacto y envía la solicitud.</p></details>
+  <details><summary>¿Cómo hago un pedido de catering o para un evento?</summary><p>Usa la calculadora de catering o marca "corporativo / catering" en el carrito e ingresa los datos del evento (fecha, personas y dirección).</p></details>
+  <details><summary>¿Cómo sé si mi pedido fue confirmado?</summary><p>El negocio te responderá por WhatsApp para confirmar horario y pago.</p></details>
+  <details><summary>¿Puedo modificar mi pedido después de enviarlo?</summary><p>Debes comunicarte con el negocio por WhatsApp para solicitar el cambio.</p></details>
+  <details><summary>¿Puedo recoger mi pedido en vez de delivery?</summary><p>Sí, al enviar tu pedido eliges entre recojo en local o delivery.</p></details>
+  <details><summary>¿Qué hago si no encuentro lo que busco?</summary><p>Escríbenos por WhatsApp para consultar disponibilidad o pedidos personalizados.</p></details>
+</div></section>
+</main>
 
-          <fieldset id="evento" hidden>
-            <legend>Datos del evento</legend>
-            <label>Fecha del evento <input name="fechaEvento" type="date"></label>
-            <label>Hora (opcional) <input name="horaEvento" type="time"></label>
-            <label>Tipo de servicio <input name="tipoServicio" placeholder="Ej. cumpleaños, reunión de oficina"></label>
-            <label>Cantidad de personas <input name="personas" type="number" min="1" inputmode="numeric"></label>
-            <label>Dirección del evento <input name="direccionEvento"></label>
-          </fieldset>
+<footer id="contacto" class="footer"><div class="wrap">
+  <div class="fgrid">
+    <div><h4>La Doñita Gourmet</h4><p>Empanadas artesanales, bocaditos y catering gourmet en Lima. Cada bocado hecho con amor y dedicación culinaria.</p></div>
+    <div><h4>Contacto directo</h4><p>📞 937 227 925 / 940 309 527</p><p>💬 WhatsApp pedidos express</p><p>📍 Lima, Perú (taller artesanal con entrega a domicilio)</p><p>Instagram · TikTok</p></div>
+    <div><h4>Pedidos rápidos</h4><p><a href="#catalogo">Empanadas artesanales</a></p><p><a href="#catalogo">Bocaditos para evento</a></p><p><a href="#catering">Cotizar catering &amp; coffee break</a></p></div>
+    <div><h4>Horarios &amp; despacho</h4><p>Lunes a sábado, 8:00 AM – 8:00 PM (domingos previa reserva)</p><p>🚚 Cobertura en toda Lima Metropolitana</p></div>
+  </div>
+  <p class="copy">© 2026 La Doñita Gourmet. Todos los derechos reservados. Lima, Perú.</p>
+</div></footer>
+<a class="fab" id="wa-fab" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">💬</a>
 
-          <fieldset>
-            <legend>Entrega</legend>
-            <label class="inline"><input type="radio" name="entrega" value="recojo en local" checked> Recojo en local</label>
-            <label class="inline"><input type="radio" name="entrega" value="delivery"> Delivery</label>
-            <label id="dir-wrap" hidden>Dirección de entrega <input name="direccion"></label>
-            <label>Fecha de entrega deseada (opcional) <input name="fechaEntrega" type="date"></label>
-            <label>Método de pago preferido (opcional) <input name="pago"></label>
-            <label>Observaciones (opcional) <textarea name="observaciones" rows="2"></textarea></label>
-          </fieldset>
-
-          <p id="error" class="error" role="alert" hidden></p>
-          <p id="exito" class="exito" role="status" hidden>Se abrió WhatsApp con tu pedido. Envía el mensaje para que el negocio lo confirme.</p>
-          <button class="btn" type="submit">Confirmar por WhatsApp</button>
-        </form>
-      </div>
-    </section>
-
-    <section id="faq" class="section">
-      <h2>Preguntas frecuentes</h2>
-      <details><summary>¿Cómo realizo un pedido?</summary><p>Ingresa al catálogo, selecciona el producto, completa tus datos de contacto y envía la solicitud.</p></details>
-      <details><summary>¿Cómo hago un pedido de catering o para un evento?</summary><p>Al enviar tu solicitud, marca la opción "pedido corporativo" e ingresa los datos del evento (fecha, cantidad de personas y dirección).</p></details>
-      <details><summary>¿Cómo sé si mi pedido fue confirmado?</summary><p>Recibirás una notificación una vez que el negocio confirme tu pedido.</p></details>
-      <details><summary>¿Puedo modificar mi pedido después de enviarlo?</summary><p>No directamente desde el sistema; debes comunicarte con el negocio para solicitar el cambio.</p></details>
-      <details><summary>¿Puedo recoger mi pedido en el local en vez de delivery?</summary><p>Sí, al enviar tu pedido puedes elegir el método de entrega: recojo en local o delivery.</p></details>
-      <details><summary>¿Qué hago si no encuentro el producto que busco en el catálogo?</summary><p>Puedes comunicarte directamente con el negocio para consultar disponibilidad o pedidos personalizados.</p></details>
-    </section>
-  </main>
-
-  <footer id="contacto" class="footer">
-    <p>La Doñita Gourmet · Lima, Perú</p>
-    <p>Pedidos y consultas por WhatsApp, Instagram y TikTok.</p>
-  </footer>
-
-  <script src="js/productos.js"></script>
-  <script src="js/app.js"></script>
+<script src="js/productos.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
