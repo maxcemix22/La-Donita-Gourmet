@@ -56,7 +56,7 @@ Estados del pedido: `pendiente` → `en preparación` → `en camino` (solo deli
 
 ## Roles
 
-`admin` (propietaria), `empleado`, `repartidor` y el **cliente**, que no necesita registrarse para pedir.
+`admin` (propietario), `empleado`, `repartidor` y el **cliente**, que no necesita registrarse para pedir.
 
 ## Documentación
 
