@@ -12,6 +12,6 @@ const CATEGORIAS = [
 ];
 
 const PRODUCTOS = [
-  { id: "PRO001", categoria: "CAT001", nombre: "Empanada de pollo", descripcion: "Empanada rellena de pollo desmenuzado", precio: 4.5, foto: null },
-  { id: "PRO002", categoria: "CAT002", nombre: "Box de catering básico", descripcion: "Box de bocaditos surtidos para eventos", precio: 15.0, foto: null }
+  { id: "PRO001", categoria: "CAT001", nombre: "Empanada de pollo", descripcion: "Empanada rellena de pollo desmenuzado", precio: 4.5, stock: 100, foto: null },
+  { id: "PRO002", categoria: "CAT002", nombre: "Box de catering básico", descripcion: "Box de bocaditos surtidos para eventos", precio: 15.0, stock: 50, foto: null }
 ];
