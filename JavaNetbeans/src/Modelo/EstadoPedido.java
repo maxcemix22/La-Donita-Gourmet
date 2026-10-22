@@ -1,5 +1,10 @@
 package Modelo;
 
+/*
+ * MODIFICADO (alineación con el informe y la BD ladonita_gourmet):
+ * - Enum NUEVO con los estados de la BD (pendiente, en preparación, en camino, entregado).
+ */
+
 /** Estados del pedido (enum estado_pedido de la BD, Tabla 8 del informe). */
 public enum EstadoPedido {
     PENDIENTE("pendiente"),

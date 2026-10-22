@@ -1,5 +1,13 @@
 package Modelo;
 
+/*
+ * MODIFICADO (alineación con el informe y la BD ladonita_gourmet):
+ * - Se agregaron nombres, apellidos, dni, telefono, correo y estado (según la tabla usuario).
+ * - Valida rol (admin/empleado/repartidor) y DNI de 8 dígitos. Se agregaron getters.
+ * - La contraseña NO se guarda en el objeto; la maneja solo UsuarioDAO (hash).
+ * - setId(): lo usa UsuarioDAO para asignar el id generado al insertar.
+ */
+
 /**
  * Usuario del sistema (admin, empleado o repartidor).
  * La contraseña NO se guarda en el objeto: la maneja solo el DAO (ver UsuarioDAO).
@@ -36,6 +44,9 @@ public class Usuario {
         this.correo = correo;
         this.estado = estado;
     }
+
+    /** Lo asigna el DAO al insertar (los ids los genera la capa de datos). */
+    public void setId(String id) { this.id = id; }
 
     public String getId() { return id; }
     public String getNombres() { return nombres; }

@@ -1,5 +1,16 @@
 package Modelo;
 
+/*
+ * MODIFICADO (alineación con el informe y la BD ladonita_gourmet):
+ * - Se agregaron repartidor, metodoEntrega, direccionEntrega, observaciones, datosEvento y lista de detalles.
+ * - fechaEntreega (typo, LocalDate) pasó a fechaEntregaEstimada (LocalDateTime, como en la BD).
+ * - estado ahora usa el enum EstadoPedido. agregarDetalle() recalcula el total.
+ * - cambiarEstado() valida el flujo pendiente > en preparación > en camino (solo delivery) > entregado.
+ * - Valida tipo, método de entrega y dirección obligatoria en delivery.
+ * - Si no se indica fecha, usa la fecha y hora actual.
+ * - restaurarEstado() y setIdPedido(): los usa PedidoDAO al cargar o registrar pedidos.
+ */
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -36,7 +47,7 @@ public class Pedido {
         }
         this.idPedido = idPedido;
         this.cliente = cliente;
-        this.fecha = fecha;
+        this.fecha = fecha != null ? fecha : LocalDateTime.now();
         this.tipo = tipo;
         this.metodoEntrega = metodoEntrega;
         this.direccionEntrega = direccionEntrega;
@@ -76,6 +87,12 @@ public class Pedido {
         if (!ok) throw new IllegalStateException("Transición no permitida: " + estado.getEtiqueta() + " → " + nuevo.getEtiqueta());
         estado = nuevo;
     }
+
+    /** Lo asigna el DAO al registrar el pedido. */
+    public void setIdPedido(String idPedido) { this.idPedido = idPedido; }
+
+    /** Solo para el DAO: fija el estado que ya tiene el pedido guardado, sin validar la transición. */
+    public void restaurarEstado(EstadoPedido estado) { this.estado = estado; }
 
     public void setFechaEntregaEstimada(LocalDateTime f) { this.fechaEntregaEstimada = f; }
     public void setObservaciones(String o) { this.observaciones = o; }

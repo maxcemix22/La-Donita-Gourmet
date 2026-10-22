@@ -1,5 +1,13 @@
 package Modelo;
 
+/*
+ * MODIFICADO (alineación con el informe y la BD ladonita_gourmet):
+ * - Se reemplazaron los constructores sueltos (solo correo / nombre+teléfono) por uno completo según la tabla cliente.
+ * - Teléfono obligatorio; correo y dirección opcionales, como en la BD (antes el correo era obligatorio).
+ * - Se agregaron getters/setters. Se corrigió el nombre del campo Correo a correo.
+ * - setIdCliente(): lo usa ClienteDAO para asignar el id generado al insertar.
+ */
+
 /**
  * Cliente que realiza pedidos. Según la BD, teléfono es obligatorio y
  * correo/dirección son opcionales (el cliente no necesita registrarse, ver 6.2 del informe).
@@ -30,6 +38,9 @@ public class Cliente {
     public String getTelefono() { return telefono; }
     public String getCorreo() { return correo; }
     public String getDireccionReferencia() { return direccionReferencia; }
+
+    /** Lo asigna el DAO al insertar (los ids los genera la capa de datos). */
+    public void setIdCliente(String idCliente) { this.idCliente = idCliente; }
 
     public void setTelefono(String telefono) {
         if (telefono == null || telefono.isBlank()) throw new IllegalArgumentException("Teléfono obligatorio");

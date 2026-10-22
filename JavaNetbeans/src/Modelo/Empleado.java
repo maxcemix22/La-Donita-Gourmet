@@ -1,5 +1,12 @@
 package Modelo;
 
+/*
+ * MODIFICADO (alineación con el informe y la BD ladonita_gourmet):
+ * - Constructor actualizado a los nuevos campos de Usuario. Se agregó fechaIngresoLaboral.
+ * - El sueldo pasó de float a BigDecimal (decimal(8,2) en la BD) y no puede ser negativo.
+ * - Valida turno (mañana/tarde). Se agregaron getters.
+ */
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

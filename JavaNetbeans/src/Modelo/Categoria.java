@@ -1,5 +1,11 @@
 package Modelo;
 
+/*
+ * MODIFICADO (alineación con el informe y la BD ladonita_gourmet):
+ * - Se agregaron descripcion y estado (columnas de la tabla categoria).
+ * - Se agregaron getters y validación de id y nombre. Se mantiene el constructor corto anterior.
+ */
+
 public class Categoria {
     private String idCategoria;
     private String nombre;

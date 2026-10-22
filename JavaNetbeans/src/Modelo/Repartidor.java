@@ -1,5 +1,12 @@
 package Modelo;
 
+/*
+ * MODIFICADO (alineación con el informe y la BD ladonita_gourmet):
+ * - Constructor actualizado a los nuevos campos de Usuario. Se agregó fechaIngresoLaboral.
+ * - PlacaVehiculo pasó a placaVehiculo; licencia pasó a licenciaConducir (nombre de la BD).
+ * - Valida tipoVehiculo (moto/auto/bicicleta). Se agregaron getters.
+ */
+
 import java.time.LocalDate;
 
 public class Repartidor extends Usuario {
