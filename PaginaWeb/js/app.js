@@ -2,6 +2,20 @@
 
 const carrito = new Map(); // idProducto -> cantidad
 let categoriaActiva = "todas";
+const CLAVE = "donita_carrito";
+
+/* El carrito se recuerda en el navegador (si el almacenamiento no está disponible, simplemente no se guarda) */
+function guardarCarrito() {
+  try { localStorage.setItem(CLAVE, JSON.stringify([...carrito])); } catch (e) { /* sin almacenamiento */ }
+}
+function cargarCarrito() {
+  try {
+    JSON.parse(localStorage.getItem(CLAVE) || "[]").forEach(([id, cant]) => {
+      const p = PRODUCTOS.find((x) => x.id === id);
+      if (p && Number.isInteger(cant) && cant > 0 && p.stock > 0) carrito.set(id, Math.min(cant, p.stock));
+    });
+  } catch (e) { /* datos corruptos: se ignoran */ }
+}
 
 const $ = (sel) => document.querySelector(sel);
 const soles = (n) => "S/ " + n.toFixed(2);
@@ -48,18 +62,29 @@ function renderProductos() {
       el("h3", {}, p.nombre),
       el("p", {}, p.descripcion),
       el("p", { class: "precio" }, soles(p.precio)),
-      el("button", { type: "button", class: "btn", onclick: () => agregar(p.id) }, "Agregar al pedido")
+      el("button", { type: "button", class: "btn", onclick: () => agregar(p.id), ...(p.stock > 0 ? {} : { disabled: "" }) },
+        p.stock > 0 ? "Agregar al pedido" : "Agotado")
     ));
   });
 }
 
 /* ---------- Carrito ---------- */
-function agregar(id) { carrito.set(id, (carrito.get(id) || 0) + 1); renderCarrito(); }
+function agregar(id) { cambiarCantidad(id, 1); }
 function cambiarCantidad(id, delta) {
+  const p = PRODUCTOS.find((x) => x.id === id);
   const n = (carrito.get(id) || 0) + delta;
+  const aviso = $("#aviso-carrito");
+  aviso.hidden = true;
+  if (n > p.stock) {
+    aviso.textContent = `Solo hay ${p.stock} unidades disponibles de ${p.nombre}.`;
+    aviso.hidden = false;
+    return;
+  }
   if (n <= 0) carrito.delete(id); else carrito.set(id, n);
   renderCarrito();
 }
+
+$("#vaciar").addEventListener("click", () => { carrito.clear(); $("#aviso-carrito").hidden = true; renderCarrito(); });
 
 function totalPedido() {
   let t = 0;
@@ -86,6 +111,7 @@ function renderCarrito() {
     ));
   });
   $("#total").textContent = soles(totalPedido());
+  guardarCarrito();
 }
 
 /* ---------- Formulario (RF02, RF03) ---------- */
@@ -103,8 +129,10 @@ function validar() {
   if (!valor("nombre")) faltan.push("nombre");
   if (!/^[+\d][\d\s-]{6,}$/.test(valor("telefono"))) faltan.push("teléfono válido");
   if (radio("entrega") === "delivery" && !valor("direccion")) faltan.push("dirección de entrega");
+  const hoy = new Date().toISOString().slice(0, 10);
+  if (valor("fechaEntrega") && valor("fechaEntrega") < hoy) faltan.push("fecha de entrega que no sea pasada");
   if (radio("tipo") === "catering") {
-    if (!valor("fechaEvento")) faltan.push("fecha del evento");
+    if (!valor("fechaEvento") || valor("fechaEvento") < hoy) faltan.push("fecha del evento (hoy o posterior)");
     if (!valor("tipoServicio")) faltan.push("tipo de servicio");
     if (!(Number(valor("personas")) > 0)) faltan.push("cantidad de personas");
     if (!valor("direccionEvento")) faltan.push("dirección del evento");
@@ -147,10 +175,14 @@ form.addEventListener("submit", (ev) => {
     return;
   }
   err.hidden = true;
+  $("#exito").hidden = false;
   const url = "https://wa.me/" + encodeURIComponent(WHATSAPP_NUMBER) + "?text=" + encodeURIComponent(armarMensaje());
   window.open(url, "_blank", "noopener");
 });
 
+["fechaEvento", "fechaEntrega"].forEach((n) => { form.elements[n].min = new Date().toISOString().slice(0, 10); });
+
+cargarCarrito();
 renderFiltros();
 renderProductos();
 renderCarrito();
