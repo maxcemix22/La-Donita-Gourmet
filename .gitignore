@@ -1,0 +1,12 @@
+# NetBeans / Ant
+JavaNetbeans/build/
+JavaNetbeans/dist/
+JavaNetbeans/nbproject/private/
+
+# Credenciales y configuración local
+.env
+config.local.*
+
+# Sistema
+.DS_Store
+Thumbs.db
