@@ -3,7 +3,7 @@
  * Los productos de ejemplo salen de los datos de prueba de BaseDatos/sistema_ventas.sql.
  * TODO: reemplazar por el catálogo real (fotos/precios) o cargarlo desde la BD cuando exista el backend.
  */
-const WHATSAPP_NUMBER = ""; // TODO: número del negocio con código de país, ej. "51999999999"
+const WHATSAPP_NUMBER = "51912679851"; // TODO: número del negocio con código de país, ej. "51999999999"
 
 const CATEGORIAS = [
   { id: "CAT001", nombre: "Empanadas" },
