@@ -1,5 +1,12 @@
 package Modelo;
 
+/*
+ * MODIFICADO (alineación con el informe y la BD ladonita_gourmet):
+ * - Se agregaron descripcion y fotoUrl (columnas de la tabla producto).
+ * - Valida precio y stock no negativos (CHECK de la BD). Se agregaron getters.
+ * - setIdProducto(): lo usa ProductoDAO para asignar el id generado al insertar.
+ */
+
 import java.math.BigDecimal;
 
 public class Producto {
@@ -25,6 +32,9 @@ public class Producto {
         this.stock = stock;
         this.estado = estado;
     }
+
+    /** Lo asigna el DAO al insertar (los ids los genera la capa de datos). */
+    public void setIdProducto(String idProducto) { this.idProducto = idProducto; }
 
     public String getIdProducto() { return idProducto; }
     public Categoria getCategoria() { return categoria; }

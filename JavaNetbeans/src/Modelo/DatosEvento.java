@@ -1,5 +1,11 @@
 package Modelo;
 
+/*
+ * MODIFICADO (alineación con el informe y la BD ladonita_gourmet):
+ * - Clase NUEVA: entidad DatosEvento del informe (cap. V), solo para pedidos de catering (RF03).
+ * - Valida fecha, tipo de servicio, cantidad de personas > 0 y dirección.
+ */
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 

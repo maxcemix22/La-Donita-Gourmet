@@ -1,0 +1,5 @@
+# Copia este archivo como db.properties (en esta misma carpeta, JavaNetbeans) y completa tus datos.
+# db.properties NO se sube a Git (está en .gitignore).
+db.url=jdbc:mysql://localhost:3306/ladonita_gourmet?useUnicode=true&characterEncoding=UTF-8
+db.user=root
+db.password=
