@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Modelo;
 
-/**
- *
- * @author Administrator
- */
+/** Autenticación y registro de usuarios (RNF04). La contraseña se almacena como hash, nunca en texto plano. */
 public interface UsuarioDAO {
-    public Usuario buscarPorUsuario(String Usuario);
-    public boolean insertarUsuario(String Usuario);
-    
+    Usuario buscarPorUsuario(String usuario);
+    boolean autenticar(String usuario, String contrasena);
+    boolean insertar(Usuario usuario, String contrasenaHash);
 }

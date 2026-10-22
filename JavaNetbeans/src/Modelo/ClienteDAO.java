@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Modelo;
 
-/**
- *
- * @author Administrator
- */
+/** Acceso a datos de clientes. Implementación pendiente (JDBC + MySQL). */
 public interface ClienteDAO {
-    
+    Cliente buscarPorTelefono(String telefono);
+    boolean insertar(Cliente cliente);
 }
