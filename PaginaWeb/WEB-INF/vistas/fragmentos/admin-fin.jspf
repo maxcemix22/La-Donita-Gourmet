@@ -1,0 +1,10 @@
+        </div>
+        <footer class="px-4 py-3 small text-muted border-top no-imprimir" style="border-color: var(--ld-borde) !important">
+            &copy; 2026 La Doñita Gourmet · Sistema de gestión de pedidos
+        </footer>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="${ctx}/recursos/js/app.js"></script>
+</body>
+</html>

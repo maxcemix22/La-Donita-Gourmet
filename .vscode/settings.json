@@ -1,0 +1,7 @@
+{
+    // Ruta a Maven. Por defecto usa el Maven que trae NetBeans 22; si tienes Maven en el PATH, cámbialo a "mvn".
+    "ladonita.maven": "\"C:\\Program Files\\NetBeans-22\\netbeans\\java\\maven\\bin\\mvn.cmd\"",
+    "maven.executable.path": "C:\\Program Files\\NetBeans-22\\netbeans\\java\\maven\\bin\\mvn.cmd",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "files.encoding": "utf8"
+}

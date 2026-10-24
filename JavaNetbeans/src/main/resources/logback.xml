@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Logback: registro de eventos de La Doñita Gourmet.
+  - logs/ladonita.log   : funcionamiento técnico (inicio, errores, advertencias).
+  - logs/auditoria.log  : quién hizo qué (logins, pedidos, cambios de estado, productos, usuarios, stock).
+  Ambos rotan cada día y se guardan 30 días. Carpeta por defecto: ~/ladonita-gourmet/logs
+  (cámbiala con la variable de entorno LADONITA_LOG_DIR).
+-->
+<configuration scan="false">
+    <property name="LOG_DIR" value="${LADONITA_LOG_DIR:-${user.home}/ladonita-gourmet/logs}"/>
+    <property name="PATRON" value="%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{30} - %msg%n"/>
+
+    <appender name="CONSOLA" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder><pattern>%d{HH:mm:ss} %-5level %logger{20} - %msg%n</pattern><charset>UTF-8</charset></encoder>
+    </appender>
+
+    <appender name="ARCHIVO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/ladonita.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/ladonita.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder><pattern>${PATRON}</pattern><charset>UTF-8</charset></encoder>
+    </appender>
+
+    <appender name="AUDITORIA" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/auditoria.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/auditoria.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>100MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder><pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %msg%n</pattern><charset>UTF-8</charset></encoder>
+    </appender>
+
+    <!-- Bitácora de negocio y seguridad (clase com.ladonita.util.Bitacora) -->
+    <logger name="AUDITORIA" level="INFO" additivity="false">
+        <appender-ref ref="AUDITORIA"/>
+        <appender-ref ref="CONSOLA"/>
+    </logger>
+
+    <!-- Código del sistema -->
+    <logger name="com.ladonita" level="INFO"/>
+
+    <!-- Librerías de terceros: solo advertencias y errores -->
+    <root level="WARN">
+        <appender-ref ref="CONSOLA"/>
+        <appender-ref ref="ARCHIVO"/>
+    </root>
+</configuration>

@@ -1,0 +1,44 @@
+</main>
+<footer class="footer-ld">
+    <div class="container contenedor">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <h6 class="fs-4">La Doñita</h6>
+                <p>Empanadas peruanas premium, bocaditos artesanales y catering selecto para eventos corporativos y reuniones en Lima.</p>
+                <p class="mb-0 fw-semibold" style="color: var(--ld-espresso)"><i class="bi bi-star-fill"></i> Masa artesanal horneada cada mañana</p>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>Atención &amp; Pedidos</h6>
+                <ul class="list-unstyled d-grid gap-2 mb-0">
+                    <li><i class="bi bi-whatsapp"></i> ${applicationScope.whatsappVisible} (pedidos y eventos)</li>
+                    <li><i class="bi bi-clock"></i> Lun a Sáb: 8:00 AM - 8:00 PM<br><span class="ms-4">Dom: 9:00 AM - 4:00 PM</span></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>Explora</h6>
+                <ul class="list-unstyled d-grid gap-2 mb-0">
+                    <li><a href="${ctx}/catalogo#catalogo">Catálogo completo</a></li>
+                    <li><a href="${ctx}/catalogo?categoria=CAT003#catalogo">Boxes &amp; combos</a></li>
+                    <li><a href="${ctx}/catalogo?categoria=CAT002#catalogo">Catering para eventos</a></li>
+                    <li><a href="${ctx}/carrito">Mi pedido</a></li>
+                    <li><a href="${ctx}/seguimiento">Seguir mi pedido</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>Cobertura</h6>
+                <p class="mb-2"><i class="bi bi-geo-alt"></i> Lima Metropolitana &amp; Callao</p>
+                <p class="mb-0"><i class="bi bi-instagram"></i> @la.donita.gourmet</p>
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="d-flex flex-wrap justify-content-between gap-2 small">
+            <span>&copy; 2026 La Doñita Gourmet. Todos los derechos reservados. Lima, Perú.</span>
+            <a href="${ctx}/login">Acceso del personal</a>
+        </div>
+    </div>
+</footer>
+<a class="fab-whatsapp" href="<c:out value='${applicationScope.whatsappContacto}'/>" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><i class="bi bi-whatsapp"></i></a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="${ctx}/recursos/js/app.js"></script>
+</body>
+</html>

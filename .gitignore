@@ -1,11 +1,16 @@
-# NetBeans / Ant
-JavaNetbeans/build/
-JavaNetbeans/dist/
-JavaNetbeans/nbproject/private/
+# Maven / NetBeans / IDEs
+target/
+nbproject/private/
+nb-configuration.xml
+.idea/
+*.iml
 
-# Credenciales y configuración local
-.env
-config.local.*
+# Archivos generados (el WAR se genera con "mvn clean package")
+dist/
+*.war
+
+# Logs y datos locales de la aplicación
+logs/
 
 # Sistema
 .DS_Store

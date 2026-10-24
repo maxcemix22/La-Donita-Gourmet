@@ -1,0 +1,83 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Ejecutar La Doñita (según db.properties)",
+            "type": "shell",
+            "command": "mvn",
+            "args": [
+                "jetty:run"
+            ],
+            "windows": {
+                "command": "${config:ladonita.maven}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "jetty",
+                "pattern": {
+                    "regexp": "^\\[ERROR\\] (.*)$",
+                    "message": 1
+                },
+                "background": {
+                    "activesBegin": "Scanning for projects",
+                    "endsPattern": "Started oejs.Server"
+                }
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/JavaNetbeans"
+            }
+        },
+        {
+            "label": "Ejecutar La Doñita en modo DEMO (sin MySQL)",
+            "type": "shell",
+            "command": "mvn",
+            "args": [
+                "jetty:run"
+            ],
+            "windows": {
+                "command": "${config:ladonita.maven}"
+            },
+            "options": {
+                "env": {
+                    "LADONITA_DB_MODO": "demo"
+                },
+                "cwd": "${workspaceFolder}/JavaNetbeans"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "jetty",
+                "pattern": {
+                    "regexp": "^\\[ERROR\\] (.*)$",
+                    "message": 1
+                },
+                "background": {
+                    "activesBegin": "Scanning for projects",
+                    "endsPattern": "Started oejs.Server"
+                }
+            }
+        },
+        {
+            "label": "Compilar WAR",
+            "type": "shell",
+            "command": "mvn",
+            "args": [
+                "clean",
+                "package"
+            ],
+            "windows": {
+                "command": "${config:ladonita.maven}"
+            },
+            "group": "build",
+            "problemMatcher": [
+                "$javac"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/JavaNetbeans"
+            }
+        }
+    ]
+}

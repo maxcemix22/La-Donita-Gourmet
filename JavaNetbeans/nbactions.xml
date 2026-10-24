@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NetBeans: el botón "Run" (F6) levanta la app con Jetty embebido, sin configurar servidor.
+     Usa la base indicada en src/main/resources/db.properties (db.modo=mysql o demo).
+     Clic derecho al proyecto > Run Maven > "Ejecutar en modo DEMO" para probar sin MySQL.
+     Si prefieres Tomcat/GlassFish: Properties > Run > Server, y borra este archivo. -->
+<actions>
+    <action>
+        <actionName>run</actionName>
+        <packagings>
+            <packaging>war</packaging>
+        </packagings>
+        <goals>
+            <goal>package</goal>
+            <goal>org.eclipse.jetty.ee10:jetty-ee10-maven-plugin:12.0.14:run</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-jetty-demo</actionName>
+        <displayName>Ejecutar en modo DEMO (sin MySQL)</displayName>
+        <goals>
+            <goal>package</goal>
+            <goal>org.eclipse.jetty.ee10:jetty-ee10-maven-plugin:12.0.14:run</goal>
+        </goals>
+        <properties>
+            <Env.LADONITA_DB_MODO>demo</Env.LADONITA_DB_MODO>
+        </properties>
+    </action>
+    <action>
+        <actionName>CUSTOM-jetty-mysql</actionName>
+        <displayName>Ejecutar con MySQL</displayName>
+        <goals>
+            <goal>package</goal>
+            <goal>org.eclipse.jetty.ee10:jetty-ee10-maven-plugin:12.0.14:run</goal>
+        </goals>
+        <properties>
+            <Env.LADONITA_DB_MODO>mysql</Env.LADONITA_DB_MODO>
+        </properties>
+    </action>
+</actions>
