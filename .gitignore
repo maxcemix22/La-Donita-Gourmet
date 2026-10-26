@@ -15,3 +15,5 @@ logs/
 # Sistema
 .DS_Store
 Thumbs.db
+/JavaNetbeans/nbproject/private/
+/JavaNetbeans/build/

@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.io.IOException;
 
 /**
  * Fábrica de conexiones JDBC.
@@ -26,19 +29,38 @@ public final class Conexion {
     }
 
     public static Connection getConexion() throws SQLException {
-        if (Config.modoDemo()) {
-            Connection cn = DriverManager.getConnection(Config.get("db.url.demo", URL_DEMO), "sa", "");
-            if (!demoInicializada) {
-                inicializarDemo(cn);
-            }
-            return cn;
+    	if (Config.modoDemo()) {
+
+        // Crear las carpetas necesarias para la base de datos DEMO
+        Path carpeta = Path.of(
+            System.getProperty("user.home"),
+            "ladonita-gourmet",
+            "demo"
+        );
+
+        try {
+            Files.createDirectories(carpeta);
+        } catch (IOException e) {
+            throw new SQLException(
+                "No se pudo crear la carpeta de la base DEMO", e
+            );
         }
-        return DriverManager.getConnection(
-                Config.get("db.url", "jdbc:mysql://localhost:3306/ladonita_gourmet"),
-                Config.get("db.user", "root"),
-                Config.get("db.password", ""));
+
+	Connection cn = DriverManager.getConnection(URL_DEMO, "sa", "");
+
+        if (!demoInicializada) {
+            inicializarDemo(cn);
+        }
+
+        return cn;
     }
 
+    return DriverManager.getConnection(
+        Config.get("db.url", "jdbc:mysql://localhost:3306/ladonita_gourmet"),
+        Config.get("db.user", "root"),
+        Config.get("db.password", "")
+    );
+}
     private static synchronized void inicializarDemo(Connection cn) throws SQLException {
         if (demoInicializada) {
             return;
