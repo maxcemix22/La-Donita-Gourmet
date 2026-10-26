@@ -6,7 +6,7 @@ Sistema web para una repostería: los clientes arman su pedido en la página (no
 
 **Tecnologías:** Java 17+ · Jakarta Servlet 6 / JSP + JSTL · MySQL 8 (o H2 en modo demo) · Bootstrap 5 · Maven · MVC + DAO
 
-> 📘 **Manual completo** de instalación, mantenimiento y uso (para desarrolladores y personal del local): [`docs/Manual_La_Donita_Gourmet.docx`](docs/Manual_La_Donita_Gourmet.docx)
+> 📘 **Manual completo** de instalación, mantenimiento y uso (para desarrolladores y personal del local) localizado en la carpeta "docs"
 
 ---
 
