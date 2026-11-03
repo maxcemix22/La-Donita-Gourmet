@@ -1,4 +1,5 @@
 @echo off
+if "%~1"=="esperar" goto esperar
 chcp 65001 >nul
 title La Donita Gourmet - Servidor
 cd /d "%~dp0JavaNetbeans"
@@ -61,12 +62,32 @@ echo Iniciando La Donita Gourmet...
 echo URL: http://localhost:8080/ladonita
 echo.
 
-rem Abrir navegador cuando Jetty responda
-start "" /b powershell -NoProfile -WindowStyle Hidden -Command "for($i=0;$i -lt 180;$i++){try{Invoke-WebRequest -UseBasicParsing http://localhost:8080/ladonita/login -TimeoutSec 2 | Out-Null; Start-Process 'http://localhost:8080/ladonita'; break}catch{Start-Sleep 2}}"
+rem Vigilante: relanza este mismo .bat minimizado para abrir el navegador cuando el servidor responda
+start "" /min cmd /c ""%~f0" esperar"
 
-rem Pasar el modo explícitamente como propiedad del sistema
-call "%MVN%" -e org.eclipse.jetty.ee10:jetty-ee10-maven-plugin:12.0.14:run
+rem Iniciar Jetty
+echo [DEBUG] Carpeta: %CD%
+if exist pom.xml (echo [DEBUG] pom.xml OK) else (echo [DEBUG] NO hay pom.xml aqui)
+
+if /i "%MVN%"=="mvn" (
+    call mvn.cmd -e org.eclipse.jetty.ee10:jetty-ee10-maven-plugin:12.0.14:run
+) else (
+    call "%MVN%" -e org.eclipse.jetty.ee10:jetty-ee10-maven-plugin:12.0.14:run
+)
 
 echo.
 echo Codigo de salida: %ERRORLEVEL%
 pause
+exit /b
+
+:esperar
+set /a N=0
+:bucle
+curl -s -o nul http://127.0.0.1:8080/ladonita/ && goto abrir
+set /a N+=1
+if %N% geq 300 exit /b
+timeout /t 2 /nobreak >nul
+goto bucle
+:abrir
+start "" http://localhost:8080/ladonita
+exit /b
